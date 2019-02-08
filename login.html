@@ -1,0 +1,40 @@
+<html>
+<head>
+ <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<h1><center><font size=4><b>Welcome to DCPESP Login Page</b></font></center></h1>
+<script  src="login.js"></script>
+</head>
+<body>
+<form  autocomplete="off" id="LoginForm" method = "POST"/>
+	  
+	  Username:
+	  <br><input id="Username" type="text" name="Username" value="" /><br/><br/>
+	  
+	  Password:
+	  <br><input id="Password" type="password" name="Password" value="" /><br/><br/>
+	  
+	  Email:
+	  <br><input id="Email" type="text" name="Email" value=""/><br/><br/>
+	  
+	   <input id="submit" type="submit"  class="button"  value="Login"/>
+	 
+</form>
+</body>
+<a href="orders.html">Order Page</a> 
+</html>
+
+  <script>
+$('#submit').on('click',function(e){
+	e.preventDefault();
+   $.ajax({
+           type: "POST",
+           url: 'http://172.22.2.221/scripts/intseclogin.php',
+           data: $("#LoginForm").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               alert(data); // show response from the php script.
+           }
+         });
+});
+</script>

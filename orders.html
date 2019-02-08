@@ -1,0 +1,62 @@
+<html>
+<head>
+ <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>	
+
+<h1><center><font size=4><b>Welcome to DCPESP Order Form</b></font></center></h1>
+	<script  src="orders.js"></script>
+
+</head>
+ <body>
+  <form action="http://172.22.1.67/scripts/ordersget.php" id="OrderForm" method = "POST"/>
+      Shirts ($30 Each) : 
+      <br><input id="Shirts" type="text" name="Shirts" value=""/></br></br>
+	  
+	  
+      Pants ($20 Each) :
+	  <br><input id="Pants" type="text" name="Pants" value=""/></br></br>
+	
+	
+   	  Trousers ($25 Each) :
+	  <br><input id="Trousers" type="text" name="Trousers" value=""/></br></br>
+	
+	
+	  Ties ($15 Each) :
+	   <br><input id="Ties" type="text" name="Ties" value=""/></br></br>
+
+	   
+	  T-shirts  ($35 Each) :
+	  <br><input id="Tshirts" type="text" name="Tshirts" value=""/></br></br>
+
+      Quantity :  
+	  <br><input type="hidden" id="Quantity" name="Quantity" value=""/></br> 
+	  <p id="DisplayQuantity" name="DisplayQuantity" value=""/></p>
+    	 
+	  <br>Total Price (in $):</br>
+	   	<br><p id="PriceDisplay" value="" name="PriceDisplay"/></p></br>
+	   	  <input type="hidden" id="TPBD" name="TPBD" value=""/></br>
+		 
+	  After Discount (in $):
+	  <br><p id="AfterDiscountDisplay" value="" name="AfterDiscountDisplay"/></p>
+	  <input type="hidden" id="TPAD" name="TPAD" value=""/></br>
+	  
+	  <input  type="submit" class="button" id="submit" value="Order"/>
+</form>
+</body>
+</html>
+
+
+  <script>
+$('#submit').on('click',function(e){
+   
+   $.ajax({
+           type: "POST",
+           url: 'http://172.22.2.221/scripts/intsecorders.php',
+           data: $("#OrderForm").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               alert(data); // show response from the php script.
+           }
+         });
+});
+</script>
